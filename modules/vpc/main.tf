@@ -24,7 +24,7 @@ resource "random_shuffle" "az_list" {
   result_count = 2
 }
 
-resource "aws_subnet" "public_cfiaptechchallenge_subnet" {
+resource "aws_subnet" "public_fiaptechchallenge_subnet" {
   count                   = var.public_sn_count
   vpc_id                  = aws_vpc.fiaptechchallenge.id
   cidr_block              = var.public_cidrs[count.index]
