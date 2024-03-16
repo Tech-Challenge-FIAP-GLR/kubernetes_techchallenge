@@ -36,7 +36,7 @@ jobs:
           terraform_version: ${{ inputs.tf_version }}
           cli_config_credentials_token: ${{ secrets.cli_config_credentials_token }}
 
-       - name: Terraform Format
+      - name: Terraform Format
         id: fmt
         run: terraform fmt -check
         
