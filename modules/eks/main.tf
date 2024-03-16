@@ -1,6 +1,6 @@
-resource "aws_eks_cluster" "techchallenge" {
+resource "aws_eks_cluster" "fiaptechchallenge" {
   name     = var.cluster_name
-  role_arn = aws_iam_role.techchallenge.arn
+  role_arn = aws_iam_role.fiaptechchallenge.arn
 
   vpc_config {
     subnet_ids              = var.aws_public_subnet
@@ -11,15 +11,15 @@ resource "aws_eks_cluster" "techchallenge" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.techchallenge-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.techchallenge-AmazonEKSVPCResourceController,
+    aws_iam_role_policy_attachment.fiaptechchallenge-AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.fiaptechchallenge-AmazonEKSVPCResourceController,
   ]
 }
 
-resource "aws_eks_node_group" "techchallenge" {
-  cluster_name    = aws_eks_cluster.techchallenge.name
+resource "aws_eks_node_group" "fiaptechchallenge" {
+  cluster_name    = aws_eks_cluster.fiaptechchallenge.name
   node_group_name = var.node_group_name
-  node_role_arn   = aws_iam_role.techchallenge2.arn
+  node_role_arn   = aws_iam_role.fiaptechchallenge2.arn
   subnet_ids      = var.aws_public_subnet
   instance_types  = var.instance_types
 
@@ -35,9 +35,9 @@ resource "aws_eks_node_group" "techchallenge" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.techchallenge-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.techchallenge-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.techchallenge-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.fiaptechchallenge-AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.fiaptechchallenge-AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.fiaptechchallenge-AmazonEC2ContainerRegistryReadOnly,
   ]
 }
 
@@ -60,8 +60,8 @@ resource "aws_security_group" "node_group_one" {
   }
 }
 
-resource "aws_iam_role" "techchallenge" {
-  name = "eks-cluster-techchallenge"
+resource "aws_iam_role" "fiaptechchallenge" {
+  name = "eks-cluster-fiaptechchallenge"
 
   assume_role_policy = <<POLICY
 {
@@ -79,20 +79,20 @@ resource "aws_iam_role" "techchallenge" {
 POLICY
 }
 
-resource "aws_iam_role_policy_attachment" "techchallenge-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "fiaptechchallenge-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.techchallenge.name
+  role       = aws_iam_role.fiaptechchallenge.name
 }
 
 # Optionally, enable Security Groups for Pods
 # Reference: https://docs.aws.amazon.com/eks/latest/userguide/security-groups-for-pods.html
-resource "aws_iam_role_policy_attachment" "techchallenge-AmazonEKSVPCResourceController" {
+resource "aws_iam_role_policy_attachment" "fiaptechchallenge-AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.techchallenge.name
+  role       = aws_iam_role.fiaptechchallenge.name
 }
 
-resource "aws_iam_role" "techchallenge2" {
-  name = "eks-node-group-techchallenge"
+resource "aws_iam_role" "fiaptechchallenge2" {
+  name = "eks-node-group-fiaptechchallenge"
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -106,17 +106,17 @@ resource "aws_iam_role" "techchallenge2" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "techchallenge-AmazonEKSWorkerNodePolicy" {
+resource "aws_iam_role_policy_attachment" "fiaptechchallenge-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = aws_iam_role.techchallenge2.name
+  role       = aws_iam_role.fiaptechchallenge2.name
 }
 
-resource "aws_iam_role_policy_attachment" "techchallenge-AmazonEKS_CNI_Policy" {
+resource "aws_iam_role_policy_attachment" "fiaptechchallenge-AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role.techchallenge2.name
+  role       = aws_iam_role.fiaptechchallenge2.name
 }
 
-resource "aws_iam_role_policy_attachment" "techchallenge-AmazonEC2ContainerRegistryReadOnly" {
+resource "aws_iam_role_policy_attachment" "fiaptechchallenge-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.techchallenge2.name
+  role       = aws_iam_role.fiaptechchallenge2.name
 }
