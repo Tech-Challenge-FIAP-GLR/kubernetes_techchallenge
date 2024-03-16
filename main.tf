@@ -11,7 +11,7 @@ module "eks" {
   scaling_desired_size    = 1
   scaling_max_size        = 1
   scaling_min_size        = 1
-  instance_types          = ["t3.large"]
+  instance_types          = ["t2.micro"]
   key_pair                = "TestKeyPair"
 }
 
