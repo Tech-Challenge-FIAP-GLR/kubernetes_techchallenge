@@ -61,7 +61,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::357171621133:role/github-oidc-role
           role-session-name: samplerolesession
-          aws-region: us-west-2
+          aws-region: us-east-2
 
       - name: Print AWS SSM Parameter
         run: aws ssm get-parameter --name=hello_aws-gh-oidc --query Parameter.Value
