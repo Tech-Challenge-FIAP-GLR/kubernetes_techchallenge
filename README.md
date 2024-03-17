@@ -7,6 +7,6 @@ Sempre que realizar uma atualização do código, deve-se criar um pull-request 
 
 ## Requirements
 * AWS account
-* configure aws access keys vars from Security Credentials:
+* Configure aws access keys vars from Security Credentials:
   * export AWS_ACCESS_KEY_ID=[your-key-id]
   * export AWS_SECRET_ACCESS_KEY=[your-key-secret]
