@@ -11,7 +11,7 @@ module "eks" {
   scaling_desired_size    = 2
   scaling_max_size        = 2
   scaling_min_size        = 1
-  instance_types          = ["t2.micro"]
+  instance_types          = ["t2.small"]
   key_pair                = "awseks"
 }
 
